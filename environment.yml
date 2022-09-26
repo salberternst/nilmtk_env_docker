@@ -6,5 +6,3 @@ dependencies:
 - python=3.7
 - nilmtk
 - nilmtk-contrib
-- tensorflow
-- pandas
