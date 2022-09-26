@@ -1,10 +1,8 @@
-FROM continuumio/miniconda3
+FROM mambaorg/micromamba:0.25.1
 
 WORKDIR /app
 
-ADD environment.yml /app/environment.yml
-RUN conda env create -f /app/environment.yml
+COPY environment.yml /tmp/environment.yml
 
-SHELL ["conda", "run", "-n", "env", "/bin/bash", "-c"]
-
-ENTRYPOINT ["conda", "run", "-n", "env", "python3"]
+RUN micromamba install -y -n base -f /tmp/environment.yml && \
+    micromamba clean --all --yes
